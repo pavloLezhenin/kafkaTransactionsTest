@@ -82,6 +82,7 @@ public class LeaderElection {
                 producer.beginTransaction();
                 Counter counter = counterService.getCounter(TOPIC);
                 int count = counter.getCounter();
+                //imitating getting messages from outer service.
                 for (int i = count; i < count + batchSize; i++) {
                     producer.send(new ProducerRecord<>(TOPIC, String.valueOf(i), "message" + i));
                 }
